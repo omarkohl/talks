@@ -1,0 +1,336 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js</title>
+
+        <link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/beige.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/solarized-dark.css">
+
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- Printing and PDF exports -->
+        <script>
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        </script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h1>How does Python's <i>import</i> work?</h1>
+                    <h3>Omar Kohl, Python User Group Freiburg, July 2016</h3>
+                </section>
+                <section>
+                    <h2>Nomenclature</h2>
+                    <ul>
+                        <li><b>Module:</b> A Python file (*.py)</li>
+                        <li><b>Package:</b> A directory containing an <b>__init__.py</b> file</li>
+                        <li><b>Distribution Package:</b> Something you can install with <b>pip install</b></li>
+                    </ul>
+                </section>
+                <section>
+                    <h2>import mod_b</h2>
+                    <div style="float:left; width: 50%">
+                        <b>mod_a.py</b>
+                        <pre><code class="python" data-trim>
+import mod_b
+
+mod_b.printer()
+                        </code></pre>
+                    </div>
+                    <div style="float:left; width: 50%">
+                        <b>mod_b.py</b>
+                        <pre><code class="python" data-trim>
+def printer():
+    print("Hi I'm a printer")
+                        </code></pre>
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <b>$ bash</b>
+                        <pre style="width: 95%"><code class="bash" data-trim>
+python3 mod_a.py
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+What does 'import b' do? It executes (yes, executes not only parses) mod_b and
+adds all symbols to the namespace of the module object. Usually this includes
+classes and functions defined in the module.
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex1</h2>
+                    <div style="float:left; width: 50%">
+                        <b>mod_a.py</b>
+                        <pre><code class="python" data-trim>
+print("[1] start of mod_a")
+
+import mod_b
+
+print("[2] mod_a after 'import mod_b'")
+
+mod_b.printer()
+
+print("[3] end of mod_a")
+                        </code></pre>
+                    </div>
+                    <div style="float:left; width: 50%">
+                        <b>mod_b.py</b>
+                        <pre><code class="python" data-trim>
+print("[4] start of mod_b")
+
+def printer():
+    print("[5] Hi I'm a printer")
+
+print("[6] end of mod_b")
+                        </code></pre>
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <b>$ bash</b>
+                        <pre style="width: 95%"><code class="bash" data-trim>
+python3 mod_a.py
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        In what order are the print statements printed? 1, 4,
+6, 2, 5, 3
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex2</h2>
+                    <div style="float:left; width: 50%">
+                        <b>mod_a.py</b>
+                        <pre><code class="python" data-trim>
+import mod_b
+import mod_c
+
+mod_c.COUNTER += 1
+mod_b.printer()
+
+print(mod_c.COUNTER)
+                        </code></pre>
+                    </div>
+                    <div style="float:left; width: 50%">
+                        <b>mod_b.py</b>
+                        <pre><code class="python" data-trim>
+import mod_c
+
+mod_c.COUNTER += 1
+
+def printer():
+    print("Hi I'm a printer")
+    mod_c.COUNTER += 1
+                        </code></pre>
+                        <b>mod_c.py</b>
+                        <pre><code class="python" data-trim>
+COUNTER = 0
+                        </code></pre>
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <b>$ bash</b>
+                        <pre style="width: 95%"><code class="bash" data-trim>
+python3 mod_a.py
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>What happens if the same module is imported in multiple places?</li>
+                            <li>What is the printed value of mod_c.COUNTER? 3</li>
+                            <li>Imported modules are shared!</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex3</h2>
+                    <div style="float:left; width: 50%">
+                        <b>mod_a.py</b>
+                        <pre><code class="python" data-trim>
+import time
+import random
+from threading import Thread
+
+def worker():
+    import mod_c
+    time.sleep(random.randint(0, 3))
+    my_counter = mod_c.COUNTER
+    time.sleep(random.randint(0, 3))
+    mod_c.COUNTER = my_counter + 1
+
+ALL_THREADS = []
+
+for i in range(10):
+    t = Thread(target=worker)
+    ALL_THREADS.append(t)
+    t.start()
+    #t.join()
+
+[t.join() for t in ALL_THREADS]
+
+import mod_c
+print(mod_c.COUNTER)
+                        </code></pre>
+                    </div>
+                    <div style="float:left; width: 50%">
+                        <b>mod_c.py</b>
+                        <pre><code class="python" data-trim>
+COUNTER = 0
+                        </code></pre>
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <b>$ bash</b>
+                        <pre style="width: 95%"><code class="bash" data-trim>
+python3 mod_a.py
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        What happens with multiple threads? mod_c is shared and
+this leads to race conditions. Don't store global state or use locking
+mechanisms to protect resources.
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex4</h2>
+                    <div style="float:left; width: 50%">
+                        <b>mod_a.py</b>
+                        <pre><code class="python" data-trim>
+import sys
+from pprint import pprint
+
+print('\n\n')
+pprint(sys.modules)
+...
+                        </code></pre>
+                    </div>
+                    <div style="float:left; width: 50%">
+                        <b>mod_b.py</b>
+                        <pre><code class="python" data-trim>
+def myfunc():
+    pass
+                        </code></pre>
+                    </div>
+                    <div style="float: left; width: 100%">
+                        <b>$ bash</b>
+                        <pre style="width: 95%"><code class="bash" data-trim>
+python3 mod_a.py
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        What is stored in sys.modules?
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex5</h2>
+                    <div>
+                        <pre><code class="bash" data-trim>
+# What is the difference between ...
+python3 mod_a.py
+                        </code></pre>
+                        <pre><code class="python" data-trim>
+# ... and
+import mod_a
+                        </code></pre>
+                        <pre><code class="bash" data-trim>
+# What about?
+python3 -m mod_a
+                        </code></pre>
+                        <b>Isn't mod_a always executed? No difference?</b>
+                    </div>
+                    <aside class="notes">
+                        if __name__ == '__main__'
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex6</h2>
+                    <div>
+                        <pre><code class="python" data-trim>
+from mod_a import func1, func2
+                        </code></pre>
+                        <pre><code class="python" data-trim>
+import mod_a
+                        </code></pre>
+                        <b>Any difference? Module always executed?</b>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>>>> from mod_a import func1, func2</li>
+                            <li>>>> import sys</li>
+                            <li>>>> sys.modules['mod_a']</li>
+                            <li>>>> dir(sys.modules['mod_a'])</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex7</h2>
+                    <div>
+                        <b>What is executed? What is added to sys.modules?</b>
+                        <pre><code class="python" data-trim>
+import pkg1.pkg2.mod_3
+                        </code></pre>
+                        <b>Is the following possible?</b>
+                        <pre><code class="python" data-trim>
+import pkg1
+pkg1.pkg2.mod_3.myfunc()
+                        </code></pre>
+                    </div>
+                    <aside class="notes">
+                        <ul>
+                            <li>Execute mod_a.py to show print stmts</li>
+                            <li>>>> import pkg1.pkg2.mod_3</li>
+                            <li>>>> import sys</li>
+                            <li>>>> sys.modules['pkg1']</li>
+                            <li>>>> sys.modules['pkg1.pkg2']</li>
+                            <li>>>> sys.modules['pkg1.pkg2.mod_3']</li>
+                            <li>Second case is sometimes possible (if import somewherere else). Never rely on it!</li>
+                        </ul>
+                    </aside>
+                </section>
+                <section>
+                    <h2>ex8</h2>
+                    <b>Example from <i>Fluent Python by Luciano Ramalho</i></b>
+                        <pre><code class="python" data-trim>
+# Scenario 1
+import evaltime
+                        </code></pre>
+                        <pre><code class="bash" data-trim>
+# Scenario 2
+python3 evaltime.py
+                        </code></pre>
+                    <aside class="notes">
+                        <ul>
+                            <li>python3 -c "import evaltime"</li>
+                            <li>python3 evaltime.py</li>
+                        </ul>
+                    </aside>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.js"></script>
+
+        <script>
+            // More info https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                history: true,
+                width: 1200,
+
+                // More info https://github.com/hakimel/reveal.js#dependencies
+                dependencies: [
+                    { src: 'plugin/markdown/marked.js' },
+                    { src: 'plugin/markdown/markdown.js' },
+                    { src: 'plugin/notes/notes.js', async: true },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+                ]
+            });
+        </script>
+    </body>
+</html>
