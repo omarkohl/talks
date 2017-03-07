@@ -20,4 +20,4 @@ slides (without speaker notes) or have a look at the exported PDF version
 (slides.pdf).
 
 All Python examples were tested with Python 3.4 or Python 2.7 (depending if
-Python3 or Python3 applies).
+Python3 or Python2 applies).
