@@ -4,13 +4,13 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Python Design Patterns</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
         <link rel="stylesheet" href="css/theme/beige.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-        <link rel="stylesheet" href="lib/css/solarized-dark.css">
+        <link rel="stylesheet" href="lib/css/solarized.css">
 
         <link rel="stylesheet" href="css/custom.css">
 
@@ -26,8 +26,143 @@
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section class="title-slide" data-background-image="imgs/wall-450106_1920.jpg">
+                    <h1>Python Design Patterns</h1>
+                    <h2>Python User Group Freiburg</h2>
+                    <h3>Omar Kohl - 08. March 2017</h3>
+                </section>
+				<section>
+                    <h2>Design Pattern</h2>
+                    <blockquote cite="https://en.wikipedia.org/wiki/Design_pattern">
+                    &ldquo;A design pattern is the re-usable form of a solution to a design problem.&rdquo;
+                    </blockquote>
+                    <p>Wikipedia</p>
+                </section>
+				<section>
+                    <h2>Design Pattern</h2>
+                    <p>Idea introduced by architect Christopher Alexander in <i>A Pattern Language</i> (1977)</p>
+                </section>
+				<section>
+                    <h2>Software Design Pattern</h2>
+                    <p>Popularized by <i>Design Patterns: Elements of Reusable Object-Oriented Software</i> (1994) by Erich Gamma, Richard Helm, Ralph Johnson and John Vlissides (a.k.a. GoF, Go4, Gang of Four)</p>
+                </section>
+				<section>
+                    <h2>Software Design Pattern</h2>
+                    <ul>
+                        <li>reusable solution to a commonly occurring problem within a given context in software design</li>
+                        <li>formalized best practices that the programmer can use</li>
+                        <li>intermediate [approach] between the levels of a programming paradigm and a concrete algorithm</li>
+                        <li>some patterns can be rendered unnecessary in languages that have built-in support for solving the problem they are trying to solve</li>
+                    </ul>
+                    <p>Wikipedia</p>
+                </section>
+				<section>
+                    <h2>Software Design Pattern</h2>
+                    <ul>
+                        <li>Best known DPs apply to OOP but not limited to it</li>
+                        <li>Design and patterns are NOT independent from the underlying technology (wood vs. bricks)</li>
+                        <li>Need a name</li>
+                        <li>Known uses have to be documented (DPs are discovered!)</li>
+                        <li>Some classic DPs are workarounds for static typing</li>
+                        <li>Categories: Creational, Structural, Behavioral, Concurrency</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Creational</h2>
+                    <ul>
+                        <li>Abstract Factory</li>
+                        <li><b>Factory Method</b></li>
+                        <li><b>Singleton</b></li>
+                        <li>Prototype</li>
+                        <li>Builder</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Structural</h2>
+                    <ul>
+                        <li><b>Adapter</b></li>
+                        <li><b>Bridge</b></li>
+                        <li>Composite</li>
+                        <li>Decorator</li>
+                        <li><b>Facade</b></li>
+                        <li>Flyweight</li>
+                        <li>Proxy</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Behavioral</h2>
+                    <ul>
+                        <li>Chain of reponsibility</li>
+                        <li>Command</li>
+                        <li>Interpreter</li>
+                        <li><b>Iterator</b></li>
+                        <li>Mediator</li>
+                        <li>Memento</li>
+                        <li>Observer</li>
+                        <li>State</li>
+                        <li><b>Strategy</b></li>
+                        <li><b>Template</b></li>
+                        <li>Visitor</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Small procedural patterns (by Brandon Rhodes)</h2>
+                    <p>Example 1</p>
+                </section>
+				<section>
+                    <h2>GoF book says (intro):</h2>
+                    <ul>
+                        <li>Program to an interface not an implementation</li>
+                        <li>Favor object composition over inheritance</li>
+                    </ul>
+                    <p>Example 2</p>
+                </section>
+				<section>
+                    <h2>Factory Method</h2>
+                    <p>Create objects without having to specify the exact class of the object that will be created</p>
+                    <p>Example 3</p>
+                </section>
+				<section>
+                    <h2>Singleton</h2>
+                    <p>Restrict the instantiation of a class to one object</p>
+                    <p>Example 4</p>
+                </section>
+				<section>
+                    <h2>Adapter</h2>
+                    <p>The Adapter design pattern allows otherwise incompatible classes to work together by converting the interface of one class into an interface expected by the clients.</p>
+                    <p>Example 5</p>
+                </section>
+				<section>
+                    <h2>Facade</h2>
+                    <p>Provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.</p>
+                    <p>Example 6</p>
+                </section>
+				<section>
+                    <h2>Bridge</h2>
+                    <p>Meant to decouple an abstraction from its implementation so that the two can vary independently (don't subclass for several purposes)</p>
+                    <p>Example 7</p>
+                </section>
+				<section>
+                    <h2>Iterator</h2>
+                    <p>Provide a way to access the elements of an aggregate object sequentially without exposing its underlying representation.</p>
+                    <p>Example 8</p>
+                </section>
+				<section>
+                    <h2>Strategy</h2>
+                    <p>Enables an algorithm's behavior to be selected at runtime</p>
+                    <p>Example 9</p>
+                </section>
+				<section>
+                    <h2>Template</h2>
+                    <p>Define the skeleton of an algorithm in an operation, deferring some steps to subclasses. Template method lets subclasses redefine certain steps of an algorithm without changing the algorithm's structure.</p>
+                    <p>Example 10</p>
+                </section>
+				<section class="links">
+                    <h2>Links / Sources</h2>
+                    <p><b>Python Design Patterns 1</b> Brandon Rhodes - PyOhio 2012<br />https://www.youtube.com/watch?v=Er5K_nR5lDQ<br />Slides: http://rhodesmill.org/brandon/slides/2012-07-pyohio/</p>
+                    <p><b>Python Design Patterns</b> Alex Martelli - Google 2007<br />Part 1: https://www.youtube.com/watch?v=4KZx8bATBFs<br />Part 2: https://www.youtube.com/watch?v=cOcpUCUsn_o<br />Slides: http://www.aleax.it/goo_pydp.pdf</p>
+                    <p><b>The (lack of) design patterns in Python</b> Joe Gregorio - PyCon 2009<br />http://pyvideo.org/pycon-us-2009/pycon-2009--the--lack-of--design-patterns-in-pyth.html<br />Slides: http://assets.en.oreilly.com/1/event/12/_The%20Lack%20of_%20Design%20Patterns%20in%20Python%20Presentation.pdf</p>
+                </section>
 			</div>
 		</div>
 
