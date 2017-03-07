@@ -1,0 +1,255 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+        <link rel="stylesheet" href="css/theme/beige.css">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="lib/css/solarized-dark.css">
+
+        <link rel="stylesheet" href="css/custom.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="title-slide" data-background-image="imgs/bread-food-salad-sandwich.jpg">
+                    <h1>Unicode sandwiches</h1>
+                    <h2>Python User Group Freiburg</h2>
+                    <h3>Omar Kohl - 09. November 2016</h3>
+                </section>
+				<section>
+                    <h2>Translate</h2>
+                    <pre><code data-trim>
+                        0x5F 0x3B 0x58 0x53 0x28 0x57 0x58 0x48
+                    </code></pre>
+                    <pre><code data-trim>
+                        95   59   88   83   40   87   88   72
+                    </code></pre>
+                    <p>What encoding is this?</p>
+                </section>
+				<section>
+                    <h2>Solution</h2>
+                    <p>Every nº is the Nth word in the "History" section of the English article about the city Freiburg.</p>
+                    <p>Solution: This city is Hamburg and it is German</p>
+                    <p>What do we learn from this example?</p>
+                </section>
+				<section>
+                    <h2>Definitions</h2>
+                    <p><b>Code:</b> System of rules to convert information into another form or representation</p>
+                    <p><b>Encode:</b> Converting from source into symbols for communication or storage</p>
+                    <p><b>Decode:</b> Converting code symbols back into a form that the recipient understands</p>
+                    <p><small>Definitions adapted from Wikipedia</small></p>
+                </section>
+				<section>
+                    <h2>Encoding/Decoding: A matter of convention</h2>
+                    <p>Encoding: Converting from source to symbols.</p>
+                    <p>Decoding: Converting from symbols to source.</p>
+                    <p><b>What is the source?</b></p>
+                    <p>Example: Text ---ASCII---> bytes (numbers)</p>
+                    <p>Example: Numbers ---ASCII---> letters</p>
+                </section>
+				<section>
+                    <h2>Two computers communicate</h2>
+                    <p>Microphone, Loudspeakers</p>
+                    <p>- ASCII</p>
+                </section>
+				<section>
+                    <h2>Two computers communicate</h2>
+                    <p>Microphone, Loudspeakers</p>
+                    <p>- Custom encoding</p>
+                </section>
+				<section>
+                    <h2>Two computers communicate</h2>
+                    <p>Microphone, Loudspeakers</p>
+                    <p>- MP3</p>
+                </section>
+				<section>
+                    <h2>Two computers communicate</h2>
+                    <p>What happens if the second partner receives a stream of bits and mistakes the encoding?</p>
+                </section>
+                <section>
+                    <h2>ASCII</h2>
+                    <ul>
+                        <li>American Standard Code for Information Interchange</li>
+                        <li>Work on the standard began 1960</li>
+                        <li>Basis for most other character encodings</li>
+                        <li>7 bits (1 byte with most significant bit always 0)</li>
+                        <li>Decimal: 0 - 127</li>
+                        <li>Printable characters (decimal): 32 - 126</li>
+                        <li>Example 1</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>./example_py3.py</li>
+                            <li>file file.txt</li>
+                            <li>file tells us it is ASCII. Where is the encoding stored?</li>
+                            <li>bless file.txt</li>
+                            <li>hexdump -C file.txt</li>
+                        </ul>
+                    </aside>
+                </section>
+				<section>
+                    <h2>ASCII "extensions" (1 byte)</h2>
+                    <ul>
+                        <li>latin1 (ISO 8859-1)</li>
+                        <li>ISCII (Indian characters)</li>
+                        <li>VISCII (Vietnamese characters)</li>
+                        <li>Windows 1252 (latin1 extension, sometimes wrongly called ANSI)</li>
+                        <li>IBM PC code page 437</li>
+                        <li>ISO 8859-2, ISO 8859-3, ...</li>
+                        <li>etc.</li>
+                    </ul>
+                    <p>What is the main limitation of these encodings?</p>
+                    <p>Example 2</p>
+                </section>
+                <section>
+                    <h2>Limitation</h2>
+                    <p><b>Nomos:</b> From the Greek term for "law" (νόμος, nómos; pl. νόμοι, nómoi).</p>
+                    <p><b>Omar:</b> (Arabic: عمر‎‎, Hebrew: עומר‎‎), is a male given name of Arabic and Hebrew origin</p>
+                </section>
+				<section>
+                    <h2>Unicode: Motivation</h2>
+                    <ul>
+                        <li>1 byte not enough</li>
+                        <li>N bytes: Not efficient (waste of space)</li>
+                        <li>All problems in computer science can be solved by another level of indirection (David Wheeler)</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Unicode</h2>
+                    <ul>
+                        <li>Idea born in 1987. Since 1991 "Unicode Consortium"</li>
+                        <li>Abstract representation (a number) for every character of every past and current human language</li>
+                        <li>Numbers: Code points (e.g. U+00F5, U+062A, U+1F31B)</li>
+                        <li>The first 256 code points match latin1</li>
+                        <li>How are these numbers converted to bytes? "We don't care" (sort of)</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Converting Unicode to bytes: UTF</h2>
+                    <ul>
+                        <li>Unicode Transformation Format</li>
+                        <li>All code points can be encoded!</li>
+                        <li>UTF-8: 1 to 4 bytes. Most common encoding for the web. Backwards compatible with ASCII.</li>
+                        <li>UTF-16: 2 to 4 bytes. Superseded UCS-2 (the original Unicode 1.0 16 bit encoding)</li>
+                        <li>UTF-32: 4 bytes (aka UCS-4)</li>
+                        <li>Example 3</li>
+                    </ul>
+                    <aside class="notes">
+                        <ul>
+                            <li>
+                                UTF-8:
+                                G-clef: f0 9d 84 9e
+                                Euro sign: e2 82 ac
+                            </li>
+                            <li>
+                                UTF-32: (little endian)
+                                G-clef: 1e d1 01 00 (Code point U+1D11E)
+                                Euro sign: ac 20 00 00 (Code point U+20AC)
+                            </li>
+                            <li>
+                                UTF-16: (little endian)
+                                G-clef 34 d8 1e dd
+                                Euro sign: ac 20
+                            </li>
+                            <li>
+                                UTF-16LE (same as above but no BOM)
+                            </li>
+                            <li>
+                                UTF-16BE:
+                                G-clef: d8 34 dd 1e
+                                Euro sign: 20 ac
+                            </li>
+                            <li>
+                                How many bytes will the files be? UTF8 22b, UTF16LE/BE 36 (32 + 1 char 4 bytes), UTF32 68 + 4 BOM, UTF16 36 + 2 (BOM)
+                            </li>
+                            <li>
+                                Shortly explain BOM
+                            </li>
+                    </ul>
+                    </aside>
+                </section>
+				<section>
+                    <h2>The Unicode Sandwich</h2>
+                    <p><small>From: Net Batchelder "Pragmatic Unicode" PyCon 2012</small></p>
+                </section>
+				<section>
+                    <h2>Python - Best practices</h2>
+                    <ul>
+                        <li>Don't rely on default encodings! They are crazy! REALLY!</li>
+                        <li>Forget 1 character == 1 byte. Nowadays this is false!</li>
+                        <li>Open text files in text mode (mode='wt', mode='rt')</li>
+                        <li>Decode as early as possible, encode as late as possible (Unicode sandwich)</li>
+                        <li>Generally be explicit about the encoding (DB connection, HTTP etc.)</li>
+                        <li>If possible only use UTF-8</li>
+                        <li>catch and handle UnicodeErrors</li>
+                        <li>Normalize Unicode data</li>
+                        <li>Example 4</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Python 2 vs 3: str, unicode, bytes</h2>
+                    <ul>
+                        <li>Python2 str: Bytes (sequence of 8bit numbers)</li>
+                        <li>Python2 bytes: Synonym for str type(bytes()) == type(str())</li>
+                        <li>Python2 unicode: Unicode strings. Literals prefixed with u</li>
+                        <li>Python3 str: Unicode strings. No prefix for literals.</li>
+                        <li>Python3 bytes: Bytes. Literals prefixed with b</li>
+                        <li>Python3 unicode: Doesn't exist.</li>
+                        <li>Example 5</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Python 2 - Best practices</h2>
+                    <ul>
+                        <li>Always specify "# -*- coding: utf-8 -*-"?</li>
+                        <li>File open() is always binary. Decode early or use io.open()</li>
+                        <li>Use u'' literals or carefully use from __future__ import unicode_literals</li>
+                        <li>Use the six library for compatibility</li>
+                    </ul>
+                </section>
+				<section>
+                    <h2>Sources</h2>
+                    <ul>
+                        <li><b>Fluent Python</b> by Luciano Ramalho - August 2015 - First edition - O'Reilly - Chapter 4 "Text versus Bytes"</li>
+                        <li><b>Pragmatic Unicode, or, How do I stop the pain?</b> Ned Batchelder - PyCon 2012 - https://www.youtube.com/watch?v=sgHbC6udIqc</li>
+                        <li><b>Character encoding and Unicode in Python</b> Travis Fischer, Esther Nam - PyCon 2014 - https://www.youtube.com/watch?v=Mx70n1dL534</li>
+                        <li><b>The Absolute Minimum Every Software Developer Absolutely, Positively Must Know About Unicode and Character Sets (No Excuses!)</b> Joel Spolsky - http://www.joelonsoftware.com/articles/Unicode.html</li>
+                    </ul>
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
