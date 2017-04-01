@@ -3,7 +3,7 @@ Python Design Patterns
 
 Talk given at the Python User Group Freiburg (Germany) in March 2017.
 
-The slides were made with reveal.js version 3.3.0 .
+The slides were made with reveal.js version 3.4.1 .
 
 To view the slides including speaker notes:
 
@@ -18,4 +18,4 @@ npm start
 Alternatively just open *slides/index.html* with a browser and you'll see the
 slides (without speaker notes) or have a look at the exported PDF version.
 
-All Python examples were tested with Python 3.4 .
+All Python examples were tested with Python 3.4 (unless indicated otherwise).
