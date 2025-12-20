@@ -1,0 +1,130 @@
+#import "@preview/touying:0.6.1": *
+#import themes.dewdrop: *
+
+#import "@preview/numbly:0.1.0": numbly
+
+#show: dewdrop-theme.with(
+  aspect-ratio: "16-9",
+  navigation: "mini-slides",
+  config-info(
+    title: [Systemization],
+    subtitle: [],
+    author: [Omar],
+    date: "2025-12-19",
+    institution: [Rationality Freiburg],
+  ),
+)
+
+#title-slide()
+
+== Why Systemize?
+
+- Pay cost up front → save repeated future costs
+- Lock in best version of a process
+- Frees attention for important work
+- Forces examination of goals
+
+== When NOT to Systemize
+
+- Activities you enjoy exploring (e.g., cooking)
+- Infrequent tasks
+- Low-cost activities
+- Things small enough to not matter
+
+== Where to Look for Opportunities
+
+*Common routines*
+- Morning: alarm, shower, getting dressed
+- Meals: planning, shopping, cleanup
+- Work: commute, repetitive tasks
+- Computer: startup, tab management
+- Social: connecting, planning, messaging
+
+== Familiar Spaces
+
+- Bedroom: laundry, clutter, lighting
+- Bathroom: supplies, organization
+- Kitchen: dishes, storage, supplies
+- Living room: furniture, entertainment
+- Vehicle: storage, clutter
+- Workspace: desk, chair, equipment
+- Bag: weight, organization
+
+== Shoulds and Obligations
+
+- Physical health: eating, exercise, rest
+- Financial: banking, budgeting
+- Intellectual: reading, learning
+- Relationships: family, friends, colleagues
+- Career: work/life balance, projects
+- Emotional: hobbies, sleep, support
+- Community: volunteering, obligations
+
+== The Key Question
+
+#align(center)[
+  *"How can I make this take as little attention as possible?"*
+]
+
+#v(1em)
+
+- Not "how to do everything"
+- Focus on *freeing attention*
+- Let systems be your personal assistant
+- Make problems take care of themselves
+
+== Multiple Systems vs. One Master System
+
+- Usually better: multiple small systems
+  - Shopping list
+  - Kitchen cleaning algorithm
+  - Email workflow
+- Few people: one master system
+- Choose what minimizes *attentional overhead*
+
+== Qualities of Good Systems
+
+*Effortless*
+- Avoid ongoing willpower or continuous decisions
+- Single burst of effort → long-term savings
+- Example: Stock kitchen with good food, remove bad food
+
+*Reliable*
+- Foolproof reminders and objective checks
+- Let your mind actually let go
+- Example: Location-based phone reminders
+
+*Invisible*
+- Reduce clutter and noise
+- Example: Hidden calendar with text reminders
+
+== Algorithm (min effort version)
+
+- Choose an aspect of your life to systemize (1 min)
+- Identify the specific snags or attention-sucks (5 min)
+- *Directly implement* (or think of) targeted interventions to address each one (5 min)
+
+== Examples
+
+- Optimize Darktable photo editing workflow and documentation
+- Optimize my desk and locker at work to remove friction and make it nice
+- Optimize my gym bag to remove things I don't need. Create a clearer check list for things to take to the gym.
+- Relabel and sort home document folders
+
+==
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.8em, weight: "bold")[Source]
+
+    #v(1em)
+
+    #text(size: 1.3em)[Systemization]
+
+    #text(size: 1.2em)[Duncan Sabien / CFAR]
+
+    #v(0.5em)
+
+    #text(fill: rgb("#2563eb"))[#underline[#link("https://www.lesswrong.com/posts/QKpmPBpyCdNbBKAdR/systemization")]]
+  ]
+]
