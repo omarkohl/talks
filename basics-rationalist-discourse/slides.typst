@@ -1,0 +1,253 @@
+#import "@preview/touying:0.6.1": *
+#import themes.dewdrop: *
+
+#import "@preview/numbly:0.1.0": numbly
+
+#show: dewdrop-theme.with(
+  aspect-ratio: "16-9",
+  navigation: "mini-slides",
+  config-info(
+    title: [Basics of Rationalist Discourse],
+    subtitle: [Summary of the post by Duncan Sabien],
+    author: [Omar],
+    date: "2025-12-19",
+    institution: [Rationality Freiburg],
+  ),
+)
+
+#title-slide()
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em, weight: "bold")[0. Expect good discourse to require energy.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[1. Don't say straightforwardly *false* things.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[2. Track (for yourself) and distinguish (for others) your *inferences* from your *observations*.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[3. Estimate (for yourself) and make clear (for others) your rough *level of confidence* in your assertions.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[4. Make your claims *clear*, *explicit*, and *falsifiable*, or explicitly acknowledge that you aren't doing so (or can't).]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[5. Aim for *convergence on truth*, and behave as if your interlocutors are also aiming for convergence on truth.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[6. Don't jump to conclusions—maintain *at least two hypotheses* consistent with the available information.]
+  ]
+]
+
+#slide[
+  #align(horizon)[
+    #text(size: 1.1em)[7. Be careful with extrapolation, interpretation, and summary/restatement—distinguish between *what was actually said*, and what it sounds like/what it implies/what you think it looks like in practice/what it's tantamount to. If you believe that a statement A strongly implies B, and you are disagreeing with A because you disagree with B, explicitly note that "A strongly implies B" is a part of your model.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[8. Allow people to *restate, clarify, retract, and redraft* their points, if they say that their first attempt failed to convey their intended meaning; do not hold people to the first or worst version of their claim.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.4em)[9. Don't weaponize equivocation/don't abuse categories/don't engage in *motte-and-bailey* shenanigans.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[10. Hold yourself to the *absolute highest standard* when directly modeling or assessing others' internal states, values, and thought processes.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.8em, weight: "bold")[Source]
+
+    #v(1em)
+
+    #text(size: 1.3em)[Basics of Rationalist Discourse]
+
+    #text(size: 1.2em)[Duncan Sabien]
+
+    #v(0.5em)
+
+    #text(fill: rgb("#2563eb"))[#underline[#link("https://www.lesswrong.com/posts/XPv4sYrKnPzeJASuk/basics-of-rationalist-discourse-1")]]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[1. Don't say *false shit* omg this one's so basic what are you even doing. And to be perfectly fucking clear "false shit" includes *exaggeration for dramatic effect*. Exaggeration is just another way for shit to be false.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[2. You do *NOT* (necessarily) know what you fucking saw. What you *saw* and what you *thought about it* are two different things. Keep them the fuck straight.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[3. Performative overconfidence can go suck a bag of dicks. *Tell us how sure you are*, and don't pretend to know shit you don't.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[4. If you're going to talk *unfalsifiable twaddle* out of your ass, at least fucking *warn us first*.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[5. Try to *find the actual factual goddamn truth* together with whatever assholes you're talking to. Be a *Chad scout*, not a *Virgin soldier*.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.2em)[6. One hypothesis is not e-fucking-nough. You need *at least two*, AT LEAST, or you'll just end up rehearsing the same dumb shit the whole time instead of actually thinking.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.2em)[7. One great way to fuck shit up fast is to conflate the *antecedent*, the *consequent*, and the *implication*. DO NOT.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[8. Don't be all like "nuh-UH, nuh-UH, you SAID!" Just *let people correct themselves*. Fuck.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.5em)[9. That *motte-and-bailey* bullshit does not fly here.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.1em)[10. Whatever the fuck else you do, for fucksake do not fucking ignore these guidelines when *talking about the insides of other people's heads*, unless you mainly wanna light some fucking trash fires, in which case GTFO.]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #image("aella-comment.png")
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.8em, weight: "bold")[Source]
+
+    #v(1em)
+
+    #text(size: 1.3em)[Fucking Goddamn Basics of Rationalist Discourse]
+
+    #text(size: 1.2em)[Logan Strohl]
+
+    #v(0.5em)
+
+    #text(fill: rgb("#2563eb"))[#underline[#link("https://www.lesswrong.com/posts/gPPdYTwPkdvAEYyEK/fucking-goddamn-basics-of-rationalist-discourse")]]
+  ]
+]
+
+== Motte and Bailey
+
+#slide[
+  #align(center)[
+    #image("motte-bailey.jpg", width: 40%)
+  ]
+
+  #v(0.3em)
+
+  #align(center)[
+    #text(size: 0.7em)[Image source: #link("https://www.totalbattleminiatures.com/product-page/wooden-motte-and-bailey-castle")[#text(fill: rgb("#2563eb"))[#underline("totalbattleminiatures.com")]]]
+  ]
+]
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.3em)[
+      *Bailey (controversial claim):*\
+      "We need to abolish the police."
+
+      #v(1em)
+
+      *Motte (defensible retreat):*\
+      "We should reform problematic aspects of policing and explore alternative approaches to public safety."
+    ]
+  ]
+]
+
+== Equivocation
+
+#slide[
+  #align(center + horizon)[
+    #text(size: 1.1em)[
+      Since only *man* is rational.\
+      And no woman is a *man*.\
+      Therefore, no woman is rational.
+
+      #v(0.8em)
+
+      #text(size: 0.9em)[
+        Equivocates "man" between:\
+        • First use: *human being*\
+        • Second use: *male person*
+
+        #v(0.5em)
+
+        #text(size: 0.8em)[Source: T. Damer, _Attacking Faulty Reasoning_ (via Wikipedia)]
+      ]
+    ]
+  ]
+]
+
+== Abusing Categories
+
+#slide[
+  #align(horizon)[
+    #text(size: 1.1em)[
+      A situation has 3 out of 7 markers of "gaslighting" → someone uses the term.
+
+      #v(0.5em)
+
+      *The problem:* Others hear "gaslighting" and assume *all 7 markers* are present (plus their own associations), not just the 3 that were actually observed.
+
+      #v(0.5em)
+
+      *Done intentionally:* weaponized equivocation\
+      *Done accidentally:* still causes confusion and misunderstanding
+    ]
+  ]
+]
