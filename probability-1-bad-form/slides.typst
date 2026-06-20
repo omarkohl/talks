@@ -1,0 +1,334 @@
+#import "@preview/touying:0.7.4": *
+#import themes.metropolis: *
+
+// ── Palette ──────────────────────────────────────────────────────────────
+// A calm, minimalist scheme. One accent colour, used sparingly.
+#let accent = rgb("#c0392b") // a restrained red — for the things we ban
+#let ink = rgb("#1f2933") // near-black: text, header bar, focus slides
+#let muted = rgb("#7b8794") // asides, footnotes
+
+#show: metropolis-theme.with(
+  aspect-ratio: "16-9",
+  footer-progress: true,
+  config-info(
+    title: [Probability 1 is Bad Form],
+    author: [Omar],
+    date: datetime(year: 2026, month: 6, day: 20),
+    institution: [Rationality Freiburg],
+  ),
+  config-colors(
+    primary: accent,
+    secondary: ink, // header bar fill
+    neutral-darkest: ink, // body text
+    neutral-dark: ink, // section titles + focus-slide background
+  ),
+)
+
+// ── Typography ───────────────────────────────────────────────────────────
+// Inter is installed and is a clean, modern sans — a good Fira Sans stand-in.
+#set text(font: "Inter", weight: "light", size: 20pt, fill: ink)
+#show heading: set text(weight: "medium")
+#show strong: set text(fill: accent, weight: "semibold")
+
+// A few small helpers for a consistent visual language.
+#let big(body) = text(size: 1.5em, weight: "medium", body)
+#let aside(body) = text(size: 0.85em, fill: muted, style: "italic", body)
+#let banned(body) = text(fill: accent, weight: "semibold", body)
+
+// Term colours for the Bayes formula — reused on the worked example slide so
+// the same quantity always has the same colour.
+#let c-like = rgb("#2a6fdb") // likelihood  P(e | H)
+#let c-prior = rgb("#d97706") // prior       P(H)
+#let c-likeN = rgb("#0f9d58") // likelihood  P(e | not H)
+#let c-priorN = rgb("#7c3aed") // prior       P(not H)
+#let like(x) = text(fill: c-like, x)
+#let prior(x) = text(fill: c-prior, x)
+#let likeN(x) = text(fill: c-likeN, x)
+#let priorN(x) = text(fill: c-priorN, x)
+
+// The metropolis theme hides the page number on the title and focus slides
+// (visually nicer) but also *freezes* the slide counter on them, so they drop
+// out of the count entirely — leaving the total too low and the numbers
+// continuous across hidden slides. Un-freeze them so every physical slide
+// advances the counter: hidden slides simply skip drawing their number, giving
+// a correct total and true positions (e.g. 1/20 … 3/20, 4/20 …). Section
+// dividers already count this way.
+#let title-slide = title-slide.with(config: config-common(freeze-slide-counter: false))
+#let focus-slide = focus-slide.with(config: config-common(freeze-slide-counter: false))
+
+#title-slide()
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 0. OPEN
+// ═══════════════════════════════════════════════════════════════════════════
+
+#focus-slide[
+  Who here has ever said
+  they were #banned[100% sure]
+  of something?
+
+  #v(0.6em)
+  #aside[(Be honest — keep your hand up if it was in the last 6 months.)]
+]
+
+== This is bad form.
+
+Not a crime. *Bad form.*
+
+#v(0.5em)
+Like putting your shoes up on the seat in the train.
+
+#v(1em)
+#aside[A pet peeve of mine. I heard it twice last month, from two different
+rationalists.]
+
+== Two reasons it's wrong
+
+When you mean it #emph[literally]:
+
+#v(0.3em)
++ You'd have to take *extreme* bets.
++ You can't even *get* there.
+
+#v(0.8em)
+...then: "but I don't mean it literally" — and what to say instead.
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 1. THE BET
+// ═══════════════════════════════════════════════════════════════════════════
+
+#new-section-slide[Reason 1 — You'd have to take the bet]
+
+== A rock-solid fact
+
+#big["I am #banned[100% sure] that Friedrich Merz was Chancellor of Germany
+on 1 June 2026."]
+
+#v(0.8em)
+About as solid as a fact gets. Would you endorse this statement?
+
+== Then take this bet
+
+#v(0.5em)
+#grid(
+  columns: (1fr, 1fr),
+  column-gutter: 2em,
+  align: top,
+  align(center)[
+    #text(fill: muted)[If you're right]
+    #v(0.3em)
+    #big[\+1 €]
+  ],
+  align(center)[
+    #text(fill: muted)[If you're wrong]
+    #v(0.3em)
+    #big[#banned[everything]]
+    #v(0.2em)
+    #aside[house · savings · the dog]
+  ],
+)
+
+#v(1em)
+You said 100%, so there's no downside. Free money — you should be ripping my
+arm off.
+
+== For the mathematicians
+
+$ "EV" = underbrace(P("win") dot.c (+1"€"), "you keep this")
+      - underbrace(P("lose") dot.c "everything", #text(fill: accent)[#[this vanishes]]) $
+
+#v(0.4em)
+If $P("win") = 1$, then $P("lose") = 0$ and the second term is gone.
+
+*EV = +1 €*, guaranteed — no matter how big "everything" is.
+
+Probability *exactly* 1 means: accept *any* payout against *any* stake.
+
+#focus-slide[
+  You won't take it?
+
+  #v(0.4em)
+  Then you're not at 100%.
+  We're just *haggling over the decimals.*
+]
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 2. CROMWELL / BAYES
+// ═══════════════════════════════════════════════════════════════════════════
+
+#new-section-slide[Reason 2 — You can't even get there]
+
+== Cromwell's rule
+
+// NB: keep this paragraph in an explicit #block. A trailing em-dash at a line
+// wrap makes touying spill the slide onto a spurious second page; wrapping the
+// paragraph as one block keeps it on a single slide.
+#block[
+  Oliver Cromwell, to the Church of Scotland, 1650 —
+  #aside[a 17th-century military dictator, on epistemics:]
+]
+
+#quote(block: true)[
+  #text(size: 1.1em, style: "italic")[
+    "I beseech you, in the bowels of Christ, think it possible that you may be
+    mistaken."
+  ]
+]
+
+Dennis Lindley named a rule after it: never use a prior of 0 or 1.
+
+== Why? The math is merciless
+
+Bayes' theorem, in standard form:
+
+$ P(H | e)
+  = (like(P(e | H)) dot prior(P(H)))
+    / (like(P(e | H)) dot prior(P(H)) + likeN(P(e | not H)) dot priorN(P(not H))) $
+
+#v(0.3em)
+But if $P(H) = 0$, then $P(H | e) = 0$ — no matter the evidence.
+And if $P(H) = 1$, the same holds for its negation.
+
+Start at 0 or 1, and *no evidence can ever move you.*
+
+== A concrete example
+
+$H$ = "the coin is two-headed". You're *certain*: $P(H) = 1$.
+
+#v(0.3em)
+Now you flip it and see *tails* — that's $e$, strong counterevidence:
+- $like(P(e | H)) = like(0.001)$ #h(1em) (a two-headed coin "should" never land tails)
+- $likeN(P(e | not H)) = likeN(0.999)$ #h(1em) (a normal coin easily does)
+
+#v(0.3em)
+Plug in $prior(P(H)) = prior(1)$, so $priorN(P(not H)) = priorN(0)$:
+
+$ P(H | e)
+  = (like(0.001) dot prior(1))
+    / (like(0.001) dot prior(1) + likeN(0.999) dot priorN(0))
+  = 0.001 / 0.001
+  = 1 $
+
+#v(0.3em)
+The tails get *explained away*. You stay at 100% — forever.
+
+#focus-slide[
+  Probability 1 isn't confidence.
+
+  #v(0.4em)
+  It's: "no observation, ever, could change my mind."
+
+  #v(0.6em)
+  That's not confidence. That's a *religion.*
+]
+
+== "But surely 2 + 2 = 4 is certain?"
+
+No. Even that. The uncertainty isn't in the *math* — it's in *you*, the
+fallible meat computer running it.
+
+#v(0.5em)
+Never made an arithmetic slip? Never trusted a proof with a hole on page 4?
+Not dreaming right now?
+
+#v(0.5em)
+The sliver you keep back isn't for "maybe 2 + 2 = 5". It's for
+*"maybe I'm wrong about being right."*
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 3. SYMBOLIC USE
+// ═══════════════════════════════════════════════════════════════════════════
+
+#new-section-slide[But I don't mean it literally]
+
+== "I obviously mean 99.9999%"
+
+Fine for poetry: "I'm 100% behind you", "I 100% love this restaurant".
+#aside[Knock yourselves out.]
+
+#v(0.8em)
+But for an *epistemic* claim — about what is *true* — drop it entirely.
+Never. Not even as shorthand.
+
+== Two reasons, even symbolically
+
+*It launders the error.* Careful people saying "100%" make it sound normal —
+cover for the next person who means it literally.
+
+#v(0.8em)
+*It throws away the information.* 99.9999% vs 99% — "wrong 1 in a million" vs
+"1 in 100", a factor of 10,000. Rounding to "100" erases exactly the part
+worth saying.
+
+#focus-slide[
+  A tiny daily discipline.
+
+  #v(0.4em)
+  Epistemic hygiene. *Rationalist flossing.*
+]
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 4. WHAT TO SAY INSTEAD
+// ═══════════════════════════════════════════════════════════════════════════
+
+#new-section-slide[What to say instead]
+
+== A real number says something
+
+#v(0.4em)
+#align(center)[
+  #grid(
+    columns: (auto, auto),
+    column-gutter: 1.2em,
+    row-gutter: 0.6em,
+    align: (right, left),
+    big[*99%*], align(left + horizon)[→ "wrong about 1 in 100"],
+    big[*90%*], align(left + horizon)[→ "wrong about 1 in 10"],
+  )
+]
+
+#v(0.8em)
+Not weakness — a *measurement*. It tells me how much to lean on what you said.
+
+== ...but no false precision
+
+Say "99.73%" and you'd better defend the *.73*.
+
+#v(0.5em)
+Otherwise it's just 100%'s arrogant cousin — certainty in a lab coat.
+
+#v(0.8em)
+The goal isn't *more* decimals. It's *honest* ones.
+
+#focus-slide[
+  The number is a *gift.*
+
+  #v(0.5em)
+  #aside[It tells people how much to trust you — and lets them keep score.
+  That loop is how you get calibrated.]
+]
+
+// ═══════════════════════════════════════════════════════════════════════════
+// 5. CLOSE
+// ═══════════════════════════════════════════════════════════════════════════
+
+== Never 100%. Never 0.
+
+Not because you're unsure of everything —
+
+#v(0.4em)
+because you're *honest* about being a fallible human running on three pounds of
+warm meat.
+
+#v(0.8em)
+Give people your real number. It's a gift.
+
+#focus-slide[
+  Am I 100% sure of everything I just told you?
+
+  #v(0.6em)
+  ...No. Call it *99.9%.*
+
+  #v(0.8em)
+  #aside[Thank you.]
+]
