@@ -12,70 +12,72 @@
   ),
 )
 
-#set text(size: 22pt)
+#set text(size: 26pt)
 #set list(marker: [--])
 
 #title-slide()
 
-= Setting the frame
+= Getting started
 
-== A frame for tonight
+== Introduction round
 
-- Why this topic matters
-- What has changed around masculinity?
-- Why do some men look for answers online?
-- What do these spaces offer, and what worries people?
-- What could better support look like?
+Say your name, then answer:
+
+- *If you identify as male:* something you struggle with that you _think_ is more common among men
+- *If not:* a quality/behavior you _think_ is more common among men and that you appreciate
+- Decide on an answer now and preferably *don't change it*. Repetition is fine
+- _Can't or don't want to answer?_ Say why you're here instead
 
 #v(1fr)
-*Goal:* understand the needs, the risks, and the alternatives.
+
+== Tonight's plan
+
+- *18:15* Presentation
+- *18:30* Reading (if you haven't yet) --- or discussion in groups of \~5
+- *19:15* New groups: discuss concrete actions
+- *19:45* On your own: actually do one thing
+- *20:00* Debriefing all together
+- *20:20* Feedback form & tidying up
+- *20:30* Dinner --- everyone is welcome!
+
+#v(1fr)
+
+== A note on scope
+
+- Tonight we focus on heterosexual men and women in Western industrialized societies
+- This keeps the scope manageable, and some things just don't extrapolate
+- Clearly flag it if you deviate from this focus
+
+#v(1fr)
+_"Suicide is more common among men." "Well actually, there's a tribe in Zimbabwe..."_ -- not a productive move.
+
+= The topic
 
 == Changing roles, unclear expectations
 
 - Men are less often expected to be only "the provider"
-- Men are more often encouraged to talk about emotions
+- Emotional openness is encouraged more -- but not always easy
 - Dating and relationship norms feel less clear than before
-- Gender roles have shifted for women and men alike
 - Online culture increasingly shapes how people learn about gender and dating
 
-== Different people experience this differently
-
-- Some men feel lonely, rejected, blamed, or unsure of their role
-- Some women feel unsafe, dismissed, or objectified
-- Some people feel hopeful about changing gender roles
-- Some feel the conversation has become too polarized
-
 #v(1fr)
-*No one person speaks for their whole gender.*
-
-= Understanding the manosphere
+People experience this very differently. *No one person speaks for their whole gender.*
 
 == What is "the manosphere"?
 
-A broad mix of online spaces about men, dating, status, and gender.
+A broad mix of online spaces about men, dating, status, and gender:
 
-- Self-improvement, fitness, money, confidence
-- Dating and relationship advice
-- Men's rights discussions
-- Red Pill / MGTOW spaces
-- Incel forums
+- Self-improvement, fitness, confidence, dating advice
+- Men's rights, Red Pill, MGTOW, incel forums
 - Podcasts, coaches, influencers
 
-== Why it's hard to summarize
-
-- Some content is practical
-- Some content is angry
-- Some content is harmful
-- Often, all three are mixed together
-
 #v(1fr)
-*It is not one single group or belief system.*
+Practical, angry, and harmful content -- often *mixed together*. It is not one single group or belief system.
 
 == Why can it appeal?
 
 - "Your problems are real"
 - Clear explanations and rules
-- Advice on dating, status, and success
 - A feeling of belonging
 - Language for rejection, shame, and loneliness
 
@@ -86,7 +88,6 @@ People are drawn in because something feels *missing*.
 
 - Real pain can turn into blame
 - Advice can become manipulation or control
-- Generalizations start to feel normal
 - Anger can become part of someone's identity
 - Influencers can profit from insecurity
 
@@ -106,26 +107,6 @@ Separate three things:
 #v(1fr)
 Take needs seriously, without agreeing with every story or action.
 
-== Small-group questions
-
-Pick one. Use examples. Be curious about disagreement.
-
-- What real needs do manosphere spaces respond to?
-- What do critics get right -- and sometimes miss?
-- Where do manosphere explanations or solutions go wrong?
-- What would healthy support for men look like in real life?
-
-#v(1fr)
-Try to leave with *one practical idea*.
-
-== Small actions
-
-- Check in on someone who may be lonely or under pressure
-- Tell a man in your life something you appreciate about him
-- Make space for a more honest conversation
-- Speak up when a joke feels unfair or cruel
-- Invite someone to a real-world activity
-
 == How to talk tonight
 
 - Be honest and kind
@@ -134,6 +115,61 @@ Try to leave with *one practical idea*.
 - Describe the other side fairly before criticizing it
 - Leave space for uncertainty
 
+#v(1fr)
+
+= The evening
+
+== Reading -- 18:30--18:50
+
+_Didn't get to the reading? Read these sections now:_
+
+*Your Review: Dating Men In The Bay Area*
+
+- I. The Men Are Not Alright
+- III. Patterns Within the Pain
+- The man who opts out
+- The man who becomes a beast
+
+Find the link on *ratfr.de* (this event's page).
+
+#v(1fr)
+Afterwards: form your own discussion group, or join existing ones -- depending on how many you are.
+
+== Discussion round -- 18:30--19:15
+
+Groups of \~5. Pick *one* prompt. Use real examples. Be curious about disagreement.
+
+- What real needs do manosphere spaces respond to -- and where do their answers go wrong?
+- Think of a man in your life who is struggling. What kind of support would actually reach him?
+- When have you seen a man open up? What made it possible -- and what shuts it down?
+- What vision of masculinity would you offer a teenage boy today?
+
+#v(1fr)
+Try to leave with *one practical idea*.
+
+== Action round -- 19:15--20:00
+
+*19:15--19:45 -- new, mixed groups:* discuss, what could each of us concretely do?
+
+- Check in on someone who may be lonely or under pressure
+- Tell a man something specific you appreciate about him
+- Invite someone to a real-world activity
+- Speak up when a joke turns cruel
+- Share a healthier role model or resource
+- ...
+
+*19:45--20:00 -- on your own, do one thing now:* send that message, write a concrete plan, draft that invitation.
+
+#v(1fr)
+
+== Closing -- 20:00--20:30
+
+- *20:00* Debriefing together: what did you do? One takeaway?
+- *20:20* Feedback form & tidying up
+- *20:30* Dinner -- everyone is welcome!
+
+#v(1fr)
+
 #focus-slide[
-  Thank you -- let's discuss.
+  Thank you!
 ]
